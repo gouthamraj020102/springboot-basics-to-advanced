@@ -1,12 +1,14 @@
 package com.conceptandcoding.learningspringboot.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class User {
 
-    @JsonProperty("user_name")
-    public String username;
-    public String email;
+    String username;
+    String email;
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
 
     public String getUsername() {
         return username;

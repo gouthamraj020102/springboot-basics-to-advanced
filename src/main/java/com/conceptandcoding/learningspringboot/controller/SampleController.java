@@ -41,7 +41,7 @@ public class SampleController {
     // RequestBody example
     @PostMapping(path = "/saveUser")
     public String getUserDetails(@RequestBody User user) {
-        return "User created " + user.username + ":" + user.email;
+        return "User created " + user.getUsername() + ":" + user.getEmail();
     }
 
     // @ResponseEntity example
