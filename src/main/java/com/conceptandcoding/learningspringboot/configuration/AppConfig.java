@@ -3,18 +3,18 @@ package com.conceptandcoding.learningspringboot.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.conceptandcoding.learningspringboot.dto.User;
+import com.conceptandcoding.learningspringboot.dto.UserDetails;
 
 @Configuration
 public class AppConfig {
 
     @Bean
-    public User createUserBean() {
-        return new User("defaultusername", "defaultemail");
+    public UserDetails createUserBean() {
+        return new UserDetails("defaultusername", "defaultemail");
     }
 
     @Bean
-    public User createAnotherUserBean() {
-        return new User("anotherusername", "anotheremail");
+    public UserDetails createAnotherUserBean() {
+        return new UserDetails("anotherusername", "anotheremail");
     }
 }

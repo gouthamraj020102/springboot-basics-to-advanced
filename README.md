@@ -12,12 +12,12 @@ http://localhost:8080/api/fetchUser/GoutHAm
 http://localhost:8080/api/fetchUser/Gout%20HAm
 
 RequestBody example:
-curl --location --request POST 'http://localhost:8080/api/saveUser' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "user_name": "Goutham",
-    "email": "goutham12345@gmail.com"
-}'
+    curl --location --request POST 'http://localhost:8080/api/saveUser' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "user_name": "Goutham",
+        "email": "goutham12345@gmail.com"
+    }'
 
 ResponseEntity example:
 http://localhost:8080/api/retrieveUser?firstName=GoutHAm
