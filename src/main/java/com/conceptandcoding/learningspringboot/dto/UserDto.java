@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
 
 @Component
-@Scope("singleton")
+@Scope("prototype")
 public class UserDto {
 
     public UserDto() {
