@@ -1,7 +1,6 @@
 package com.conceptandcoding.learningspringboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,21 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.conceptandcoding.learningspringboot.dto.Student;
 import com.conceptandcoding.learningspringboot.dto.UserDto;
 
 import jakarta.annotation.PostConstruct;
 
 @RestController
-@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Scope("singleton")
 @RequestMapping(value = "/api/")
 public class TestController1 {
 
     @Autowired
     UserDto user;
-
-    @Autowired
-    Student student;
 
     public TestController1() {
         System.out.println("TestController1 instance initialization");
@@ -32,8 +27,7 @@ public class TestController1 {
     @PostConstruct
     public void init() {
         System.out.println("TestController1 object hashCode: " + this.hashCode() +
-                " User DTO object hashCode: " + user.hashCode() +
-                " Student object hashCode: " + student.hashCode());
+                " User DTO object hashCode: " + user.hashCode());
     }
 
     @GetMapping(path = "/fetchUser1")

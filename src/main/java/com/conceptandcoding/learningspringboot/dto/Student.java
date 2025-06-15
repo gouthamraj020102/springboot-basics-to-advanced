@@ -1,11 +1,13 @@
 package com.conceptandcoding.learningspringboot.dto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 
 @Component
+@Scope("prototype")
 public class Student {
 
     @Autowired
