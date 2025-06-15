@@ -19,7 +19,7 @@ import com.conceptandcoding.learningspringboot.service.FirstNamePropertyEditor;
 
 
 @RestController
-@RequestMapping(value = "/api/")
+@RequestMapping(value = "/user/")
 public class SampleController {
 
     @Autowired
