@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.conceptandcoding.learningspringboot.dto.UserDto;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
-@Scope("singleton")
+@Scope(value = "session")
 @RequestMapping(value = "/api/")
 public class TestController1 {
 
@@ -35,5 +37,12 @@ public class TestController1 {
         System.out.println("fetchUser1 api invoked");
         return ResponseEntity.status(HttpStatus.OK).body("");
     }
-    
+
+    @GetMapping(path = "/logout")
+    public ResponseEntity<String> getUserDtoDetails(HttpServletRequest request) {
+        System.out.println("end the session");
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return ResponseEntity.status(HttpStatus.OK).body("");
+    }
 }

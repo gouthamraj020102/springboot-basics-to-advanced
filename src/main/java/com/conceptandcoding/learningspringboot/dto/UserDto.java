@@ -1,13 +1,10 @@
 package com.conceptandcoding.learningspringboot.dto;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 
 @Component
-@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserDto {
 
     public UserDto() {
