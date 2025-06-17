@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,11 +14,19 @@ public class User {
 
     @Qualifier("onlineOrderName")
     @Autowired
-    OrderInterface orderInterface;
+    OrderInterface onlineOrderInterface;
+
+    @Qualifier("offlineOrderName")
+    @Autowired
+    OrderInterface offlineOrderInterface;
 
     @PostMapping("/createOrder")
-    public ResponseEntity<String> createOrder() {
-        orderInterface.createOrder();
+    public ResponseEntity<String> createOrder(@RequestParam boolean isOnlineOrder) {
+        if(isOnlineOrder) {
+            onlineOrderInterface.createOrder();
+        } else {
+            offlineOrderInterface.createOrder();
+        }
         return ResponseEntity.ok("");
     }
 }
