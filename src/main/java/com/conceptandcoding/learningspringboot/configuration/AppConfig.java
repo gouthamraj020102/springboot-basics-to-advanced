@@ -23,7 +23,7 @@ public class AppConfig {
     }
 
     @Bean
-    public OrderInterface createOrderBean(@Value("${isOnlineOrder}") boolean isOnlineOrder) {
+    public OrderInterface createOrderBean(@Value("true") boolean isOnlineOrder) {
         if(isOnlineOrder) {
             return new OnlineOrder();
         } else {
