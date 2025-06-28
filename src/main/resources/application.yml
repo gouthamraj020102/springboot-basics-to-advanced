@@ -4,3 +4,6 @@ spring:
 
 sqlconnection:
   enabled: true
+
+username: defaultUsername
+password: defaultPassword

@@ -10,7 +10,7 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class DBConnection {
 
-    @Autowired(required = false)
+    @Autowired
     MySQLConnection mySQLConnection;
 
     @Autowired(required = false)
