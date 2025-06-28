@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: Springboot Application
-
-sqlconnection:
-  enabled: true
