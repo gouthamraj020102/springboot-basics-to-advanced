@@ -1,14 +1,24 @@
 package com.conceptandcoding.learningspringboot.configuration;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+
 @Component
-@ConditionalOnProperty(prefix = "nosqlconnection", value = "enabled", havingValue = "true", matchIfMissing = false)
+@Profile("dev")
 public class NoSQLConnection {
 
-    NoSQLConnection() {
-        System.out.println("initialization of NoSQLConnection Bean");
+    @Value("${username}")
+    String username;
+
+    @Value("${password}")
+    String password;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("NoSQL username: " + username + " password: " + password);
     }
 
 }
