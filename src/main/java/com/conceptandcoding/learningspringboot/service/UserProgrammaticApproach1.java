@@ -2,7 +2,10 @@ package com.conceptandcoding.learningspringboot.service;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 @Component
 public class UserProgrammaticApproach1 {
@@ -13,12 +16,18 @@ public class UserProgrammaticApproach1 {
         this.userTransactionManager = userTransactionManager;
     }
 
-    public void updateUserProgrammatic() {
-        TransactionStatus status = userTransactionManager.getTransaction(null);
+    public void dbOperationWithRequiredPropagationUsingProgrammaticApproach1() {
+        DefaultTransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
+        transactionDefinition.setName("Testing REQUIRED propagation");
+        transactionDefinition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        TransactionStatus status = userTransactionManager.getTransaction(transactionDefinition);
         try {
-            // Some Initial set of DB operations
-            System.out.println("Insert Query run1");
-            System.out.println("Update Query run1");
+            // EXECUTE operation
+            System.out.println("************************");
+            System.out.println("Using Programmatic approach 1");
+            System.out.println("Propagation.REQUIRED: Is parent transaction active: " + TransactionSynchronizationManager.isActualTransactionActive());
+            System.out.println("Propagation.REQUIRED: Current transaction active: " + TransactionSynchronizationManager.getCurrentTransactionName());
+            System.out.println("************************");
             userTransactionManager.commit(status);
         } catch (Exception e) {
             userTransactionManager.rollback(status);

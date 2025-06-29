@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.conceptandcoding.learningspringboot.service.UserDeclarative;
 import com.conceptandcoding.learningspringboot.service.UserService;
 
 @RestController
@@ -13,10 +14,12 @@ public class UserController {
 
     @Autowired
     UserService userServiceObj;
+    @Autowired
+    UserDeclarative userDeclarative;
 
     @PostMapping(path = "/updateuser")
     public String updateUser() {
-        userServiceObj.method1();
+        userDeclarative.updateUser();
         return "user is updated successfully";
     }
     
