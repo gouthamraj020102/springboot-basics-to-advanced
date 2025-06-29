@@ -1,7 +1,10 @@
 package com.conceptandcoding.learningspringboot.service;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -105,5 +108,39 @@ public class LoggingAspect {
     @Before("target(com.conceptandcoding.learningspringboot.repository.IEmployee)")
     public void beforeMethodUsingTargetForInterface() {
         System.out.println("inside beforeMethod Aspect using Target for Interface");
+    }
+
+    // Combining two pointcuts using && boolean and
+    @Before("execution(* com.conceptandcoding.learningspringboot.controller.Employee.*())"
+            +
+            "&& @within(org.springframework.web.bind.annotation.RestController)")
+    public void beforeAndMethodUsingJoins() {
+        System.out.println("inside beforeMethod Aspect using &&");
+    }
+
+    // Combining two pointcuts using || boolean or
+    @Before("execution(* com.conceptandcoding.learningspringboot.controller.Employee.*())"
+            +
+            "|| @within(org.springframework.stereotype.Component)")
+    public void beforeOrMethodUsingJoins() {
+        System.out.println("inside beforeMethod Aspect using ||");
+    }
+
+    // Named Pointcuts
+    @Pointcut("execution(* com.conceptandcoding.learningspringboot.controller.Employee.*())")
+    public void customPointCutName() {
+        // always stay empty
+    }
+
+    @Before("customPointCutName())")
+    public void beforeOrMethodUsingNamedPointcuts() {
+        System.out.println("inside beforeMethod Aspect using Named Pointcuts");
+    }
+
+    @Around("execution(* com.conceptandcoding.learningspringboot.service.EmployeeUtil.*())")
+    public void aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("inside before aroundMethod Aspect");
+        joinPoint.proceed();
+        System.out.println("inside after aroundMethod Aspect");
     }
 }
