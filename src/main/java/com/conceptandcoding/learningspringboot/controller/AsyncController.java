@@ -18,7 +18,7 @@ public class AsyncController {
     @GetMapping("/getUser")
     public String getMethodName() {
         System.out.println("Inside getUser method: " + Thread.currentThread().getName());
-        asyncService.asyncMethod();
+        asyncService.asyncMethodTest();
         return null;
     }
     

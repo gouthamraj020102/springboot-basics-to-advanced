@@ -6,8 +6,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class AsyncService {
 
-    @Async
-    public void asyncMethod() {
-        System.out.println("inside asyncMethod: " + Thread.currentThread().getName());
+    @Async("myThreadPoolExecutor")
+    public void asyncMethodTest() {
+        System.out.println("inside asyncMethodTest: " + Thread.currentThread().getName());
+        try {
+            Thread.sleep(50000);
+        } catch (Exception e) {
+
+        }
     }
 }
