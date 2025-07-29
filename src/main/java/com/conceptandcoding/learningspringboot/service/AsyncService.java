@@ -8,10 +8,7 @@ public class AsyncService {
 
     @Async
     public void performTaskAsync() {
-        try {
-            // perform some task
-        } catch (Exception e) {
-            // handle the exception here
-        }
+        int i = 0;
+        System.out.println(5/i);
     }
 }
