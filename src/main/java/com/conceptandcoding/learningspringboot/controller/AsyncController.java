@@ -1,7 +1,5 @@
 package com.conceptandcoding.learningspringboot.controller;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,15 +17,8 @@ public class AsyncController {
 
     @GetMapping("/getUser")
     public String getMethodName() {
-        CompletableFuture<String> result = asyncService.performTaskAsync();
-        String output = null;
-        try {
-            output = result.get();
-            System.out.println(output);
-        } catch (Exception e) {
-            System.out.println("some exception");
-        }
-        return output;
+        asyncService.performTaskAsync();
+        return "";
     }
 
     @Async
