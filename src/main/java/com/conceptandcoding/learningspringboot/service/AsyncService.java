@@ -1,16 +1,15 @@
 package com.conceptandcoding.learningspringboot.service;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AsyncService {
 
     @Async
-    public Future<String> performTaskAsync() {
-        return new AsyncResult<>("async task result");
+    public CompletableFuture<String> performTaskAsync() {
+        return CompletableFuture.completedFuture("async task result");
     }
 }
