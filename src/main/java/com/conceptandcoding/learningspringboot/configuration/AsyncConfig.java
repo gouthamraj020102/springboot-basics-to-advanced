@@ -1,40 +1,31 @@
 package com.conceptandcoding.learningspringboot.configuration;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.lang.reflect.Method;
 
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.stereotype.Component;
 
 @Configuration
 public class AsyncConfig implements AsyncConfigurer {
 
-    private ThreadPoolExecutor poolExecutor;
+    @Autowired
+    private AsyncUncaughtExceptionHandler asyncUncaughtExceptionHandler;
 
     @Override
-    public synchronized Executor getAsyncExecutor() {
-        if(poolExecutor == null) {
-            int minPoolSize = 2;
-            int maxPoolSize = 4;
-            int queueSize = 3;
-            poolExecutor = new ThreadPoolExecutor(minPoolSize, maxPoolSize, 1,
-                        TimeUnit.HOURS, new ArrayBlockingQueue<>(queueSize), new CustomThreadFactory());
-        }
-        return poolExecutor;
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return this.asyncUncaughtExceptionHandler;
     }
 }
 
-class CustomThreadFactory implements ThreadFactory {
+@Component
+class DefaultAsyncUncaughtExceptionHandler implements AsyncUncaughtExceptionHandler {
 
-    private final AtomicInteger threadNo = new AtomicInteger(1);
     @Override
-    public Thread newThread(Runnable r) {
-        Thread thread = new Thread(r);
-        thread.setName("MyThread-" + threadNo.getAndIncrement());
-        return thread;
+    public void handleUncaughtException(Throwable ex, Method method, Object... params) {
+        System.out.println("in default Uncaught Exception method");
+        // logging can be done here.
     }
 }

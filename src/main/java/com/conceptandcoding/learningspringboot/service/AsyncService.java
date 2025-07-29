@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 public class AsyncService {
 
     @Async
-    public void asyncMethodTest() {
-        System.out.println("inside asyncMethodTest: " + Thread.currentThread().getName());
+    public void performTaskAsync() {
+        int i = 0;
+        System.out.println(5/i);
     }
 }
